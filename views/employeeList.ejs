@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee List</title>
+    <style>
+        /* NAVBAR */
+        ul {
+          list-style-type: none;
+          margin: 0;
+          padding: 0;
+          overflow: hidden;
+          text-align: center;
+        }
+        
+        li {
+          float: center;
+          display:inline-block;
+        }
+        
+        li a {
+          display: block;
+          padding: 8px;
+          background-color: #dddddd;
+        }
+
+        /* TABLE */
+        table {
+            width: 70%;
+        }
+        th {
+          background-color: blue;
+        }
+
+        table, th, td {
+          border:1px solid black;
+        }
+
+        table, th, td {
+          border: 1px solid black;
+          border-collapse: collapse;
+        }
+        
+        table.center {
+          margin-left: auto; 
+          margin-right: auto;
+        }
+        
+        .tab {
+        margin: auto;
+        width: 60%;
+        padding: 10px;
+        text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- NAVBAR -->
+    <ul>
+        <li><a href="/stores">Home</a></li> |
+        <li><a href="/stores/add">Add a New Store</a></li> |
+        <li><a href="">Employees</a></li>
+    </ul>
+    
+    <!-- HEADER -->
+    <h1 style="text-align: center">Employee List</h1>
+    
+    <!-- BUTTON -->
+    <!-- /employees?position=CEO -->
+    <form style="text-align: center" action="/employees?" method="get">
+      <button name="position" type="submit" value="All">All</button>
+      <button name="position" type="submit" value="Staff">Staff</button>
+      <button name="position" type="submit" value="Supervisor">Supervisor</button>
+      <button name="position" type="submit" value="Manager">Manager</button>
+      <button name="position" type="submit" value="CEO">CEO</button>
+    </form>
+
+    <br>
+
+    <table cellpadding="15" class="center">
+        <tr >
+          <th>Name</th>
+          <th>Position</th>
+          <th>Salary</th>
+          <th>Store's Code</th>
+          <th>Action</th>
+        </tr>
+        <% data.forEach(el => { %>
+        <tr>
+          <td><%= `${el.firstName} ${el.lastName}` %></td>
+          <td><%= el.position %></td>
+          <td><%= convertRp(el.salary) %></td>
+          <td><%= el.Store.code %></td>
+          <td>
+            <button><a href="/stores/<%= el.storeId %>/employees/<%= el.employeeId %>/delete">Delete</a></button>
+          </td>
+        </tr>
+        <% }) %>
+      </table>
+</body>
+</html>

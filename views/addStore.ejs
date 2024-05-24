@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Store</title>
+    <style>
+         /* NAVBAR */
+         ul {
+          list-style-type: none;
+          margin: 0;
+          padding: 0;
+          overflow: hidden;
+          text-align: center;
+        }
+        
+        li {
+          float: center;
+          display:inline-block;
+        }
+        
+        li a {
+          display: block;
+          padding: 8px;
+          background-color: #dddddd;
+        }
+
+        /* FORM */
+        form {
+            margin: auto; width: 220px;
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVBAR -->
+    <ul>
+        <li><a href="/stores">Home</a></li> |
+        <li><a href="/stores/add">Add a New Store</a></li> |
+        <li><a href="">Employees</a></li>
+    </ul>
+
+    <h1 style="text-align: center">Create New Store</h1>
+
+    <h4 style="text-align: center">Please filled the form below to add a new store!</h4>
+
+    <!-- FORM -->
+    <div style="text-align: center">
+    <form action="/stores/add" method="post">
+        <label >What is the name of your store?</label><br><br>
+        <input type="text" name="name"><br><br>
+        <label >Where does your store located?</label><br><br>
+        <input type="text" name="location"><br><br>
+        <label >What kind of store do you want?</label><br><br>
+            <input type="radio" name="category" value="Mart">
+            <label for="html">Mart</label>
+            <input type="radio" name="category" value="Midi">
+            <label for="css">Midi</label>
+            <input type="radio" name="category" value="Express">
+            <label for="javascript">Express</label><br><br>
+        
+            <input type="submit" value="Submit">
+    </form>
+    </div>
+
+
+    
+</body>
+</html>

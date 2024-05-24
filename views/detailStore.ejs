@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail Store</title>
+    <style>
+        /* NAVBAR */
+        ul {
+          list-style-type: none;
+          margin: 0;
+          padding: 0;
+          overflow: hidden;
+          text-align: center;
+        }
+        
+        li {
+          float: center;
+          display:inline-block;
+        }
+        
+        li a {
+          display: block;
+          padding: 8px;
+          background-color: #dddddd;
+        }
+
+        /* TABLE */
+        table {
+            width: 70%;
+        }
+        th {
+          background-color: blue;
+        }
+
+        table, th, td {
+          border:1px solid black;
+        }
+
+        table, th, td {
+          border: 1px solid black;
+          border-collapse: collapse;
+        }
+        
+        table.center {
+          margin-left: auto; 
+          margin-right: auto;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- NAVBAR -->
+    <ul>
+        <li><a href="/stores">Home</a></li> |
+        <li><a href="/stores/add">Add a New Store</a></li> |
+        <li><a href="/employees">Employees</a></li>
+    </ul>
+    
+    <h1 style="text-align: center"><%= data.name %></h1>
+
+    <h2 style="text-align: center">Code: <%= data.code %> </h2>
+
+    <p style="text-align: center">Click <a href="/stores/<%= data.id %>/employees/add">here</a> to add an Employee</p>
+
+      <p style="text-align: center">Employees Fee : <%= convertRp(salary) %></p>        
+        <table cellpadding="15" class="center">
+            <tr >
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Age</th>
+              <th>Education</th>
+              <th>Position</th>
+              <th>Salary</th>
+              <th>Action</th>
+            </tr>
+            <tr>
+              <td><%= employee.firstName %></td>
+              <td><%= employee.lastName %></td>
+              <td><%= employee.age %></td>
+              <td><%= employee.education %></td>
+              <td><%= employee.position %></td>
+              <td><%= convertRp(employee.salary) %></td>
+              <td>
+                <button><a href="/stores/<%= //el.id %>/employees/<%= //el.employeeId%>/edit">Edit</a></button>
+                <button><a href="/stores/<%= //el.id %>/employees/<%= //el.employeeId%>/delete">Delete</a></button>
+              </td>
+            </tr>
+          </table>
+</body>
+</html>

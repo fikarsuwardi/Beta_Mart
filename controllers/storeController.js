@@ -47,6 +47,8 @@ class Controller {
         })
         .then(storeData => {
             let employees = storeData.Employees
+            console.log("aaaa", storeData);
+            console.log("bbbb", employees);
             res.render('detailStore', {
                 storeData, employees, convertRp,
             })
@@ -60,19 +62,17 @@ class Controller {
         const errors = req.query.errors
         const storeId = +req.params.storeId
         Store.findByPk(storeId)
-        .then((data) => {
-            res.render('addEmployee', { data, errors })
-        })
-        .catch((err) => {
-            res.send(err)
-        })
+            .then((data) => {
+                res.render('addEmployee', { data, errors })
+            })
+            .catch((err) => {
+                res.send(err)
+            })
 
     }
 
     static addEmployee(req, res) {
         const storeId = +req.params.storeId
-        console.log("tesss",req.body);
-        console.log("store id", storeId);
         const {firstName, lastName, dateOfBirth, education, position, salary} = req.body
         Employee.create({
             firstName, lastName, dateOfBirth, education, position, StoreId: storeId, salary
@@ -91,10 +91,23 @@ class Controller {
 
     static formEditEmployee(req, res) {
         const storeId  = +req.params.storeId
-        const errors = req.query.errors
-        Store.findByPk(storeId)
+        const employeeId = +req.params.employeeId
+        Store.findOne({
+            where: {
+                id: storeId
+            },
+            include: [
+                {
+                    model: Employee,
+                    where: { 
+                        id: employeeId,
+                    }
+                }                
+            ],
+        })
         .then(data => {
-            res.render('addEmployee', { data, errors, convertRp })
+            let dataEmployee = data.Employees;
+            res.render('editEmployee', { data, dataEmployee})
         })
         .catch(err => {
             res.send(err)
@@ -103,9 +116,18 @@ class Controller {
 
     static editEmployee(req, res) {
         const storeId = +req.params.storeId
+        const employeeId = +req.params.employeeId
         const { firstName, lastName, dateOfBirth, education, position, salary } = req.body
-        Employee.create({ firstName, lastName, dateOfBirth, education, position, salary })
-        .then(_ => {
+        const editEmployee = {
+            firstName, lastName, dateOfBirth, education, position, salary
+        }
+        Employee.update(
+            editEmployee, {
+            where: {
+                id: employeeId
+            }
+        })
+        .then(() => {
             res.redirect(`/stores/${storeId}`)
         })
         .catch(err => {

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail Store</title>
+    <style>
+        /* NAVBAR */
+        ul {
+          list-style-type: none;
+          margin: 0;
+          padding: 0;
+          overflow: hidden;
+          text-align: center;
+        }
+        
+        li {
+          float: center;
+          display:inline-block;
+        }
+        
+        li a {
+          display: block;
+          padding: 8px;
+          background-color: #dddddd;
+        }
+
+        /* TABLE */
+        table {
+            width: 70%;
+        }
+        th {
+          background-color: blue;
+        }
+
+        table, th, td {
+          border:1px solid black;
+        }
+
+        table, th, td {
+          border: 1px solid black;
+          border-collapse: collapse;
+        }
+        
+        table.center {
+          margin-left: auto; 
+          margin-right: auto;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- NAVBAR -->
+    <ul>
+        <li><a href="/stores">Home</a></li> |
+        <li><a href="/stores/add">Add a New Store</a></li> |
+        <li><a href="/employees">Employees</a></li>
+    </ul>
+    
+    <h1 style="text-align: center">Add Employee</h1>
+
+    <h2 style="text-align: center">Store Name: <%= data.name %> </h2>
+
+    <form action="/stores/<%= data.id %>/employees/<%= dataEmployee[0].id %>/edit" method="post">
+        <label for="name">First Name</label><br>
+        <input type="text" name="firstName" value="<%= dataEmployee[0].firstName %>"><br>
+
+        <label for="name">Last Name</label><br>
+        <input type="text" name="lastName" value="<%= dataEmployee[0].lastName %>"><br>
+
+        <label for="date">Date Of Birth</label><br>
+        <input type="date" name="dateOfBirth" value="dateOfBirth"><br>
+
+        <label for="education">Education</label><br>
+          <select name="education" >
+              <option value="SMA">SMA</option>
+              <option value="S1">S1</option>
+              <option value="S2">S2</option>
+              <option value="S3">S3</option>
+          </select><br>
+        
+        <p>Position</p><br>
+        <input type="radio" name="position" value="Staff"/>
+        <label for="Staff">Staff</label> 
+        <input type="radio" name="position" value="Supervisor"/>
+        <label for="Supervisor">Supervisor</label> 
+        <input type="radio" name="position" value="Manager"/>
+        <label for="Manager">Manager</label>
+        <input type="radio" name="position" value="CEO"/>
+        <label for="CEO">CEO</label> <br>
+        <label for="Salary">Salary:</label><br>
+        <input type="number" name="salary" value="<%= dataEmployee[0].salary %>""><br>
+
+        <button type="submit">Update Employee</button>
+    </form>
+
+    
+</body>
+</html>

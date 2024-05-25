@@ -58,13 +58,13 @@
         <li><a href="/employees">Employees</a></li>
     </ul>
     
-    <h1 style="text-align: center"><%= data.name %></h1>
+    <h1 style="text-align: center"><%= storeData.name %></h1>
 
-    <h2 style="text-align: center">Code: <%= data.code %> </h2>
+    <h2 style="text-align: center">Code: <%= storeData.code %> </h2>
 
-    <p style="text-align: center">Click <a href="/stores/<%= data.id %>/employees/add">here</a> to add an Employee</p>
+    <p style="text-align: center">Click <a href="/stores/<%= storeData.id %>/employees/add">here</a> to add an Employee</p>
 
-      <p style="text-align: center">Employees Fee : <%= convertRp(salary) %></p>        
+      <p style="text-align: center">Employees Fee : <%= //convertRp(salary) %></p>        
         <table cellpadding="15" class="center">
             <tr >
               <th>First Name</th>
@@ -75,18 +75,20 @@
               <th>Salary</th>
               <th>Action</th>
             </tr>
-            <tr>
-              <td><%= employee.firstName %></td>
-              <td><%= employee.lastName %></td>
-              <td><%= employee.age %></td>
-              <td><%= employee.education %></td>
-              <td><%= employee.position %></td>
-              <td><%= convertRp(employee.salary) %></td>
-              <td>
-                <button><a href="/stores/<%= //el.id %>/employees/<%= //el.employeeId%>/edit">Edit</a></button>
-                <button><a href="/stores/<%= //el.id %>/employees/<%= //el.employeeId%>/delete">Delete</a></button>
-              </td>
-            </tr>
+            <% for(var i=0; i < employees.length; i++) {%>
+              <tr>
+                <td><%= employees[i].firstName %></td>
+                <td><%= employees[i].lastName %></td>
+                <td><%= employees[i].getAge %></td>
+                <td><%= employees[i].education %></td>
+                <td><%= employees[i].position %></td>
+                <td><%= convertRp(employees[i].salary) %></td>
+                <td>
+                  <button><a href="/stores/<%= storeData.id %>/employees/<%= employees[i].id %>/edit">Edit</a></button>
+                  <button><a href="/stores/<%= storeData.id %>/employees/<%= employees[i].id %>/delete">Delete</a></button>
+                </td>
+              </tr>
+            <% } %>
           </table>
 </body>
 </html>

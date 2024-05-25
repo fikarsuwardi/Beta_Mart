@@ -26,8 +26,10 @@ module.exports = (sequelize, DataTypes) => {
       }
     }
 
-    get Age() {
-      return 2022 - this.dateOfBirth.getFullYear() 
+    get getAge() {
+      const currentDate = new Date();
+      let currentYear = currentDate.getFullYear();
+      return currentYear - this.dateOfBirth.getFullYear() 
     }
 
   }

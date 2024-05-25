@@ -65,18 +65,20 @@
     <form action="/stores/<%= data.id %>/employees/add" method="post">
         <label for="name">First Name</label><br>
         <input type="text" name="firstName"><br>
+
         <label for="name">Last Name</label><br>
         <input type="text" name="lastName"><br>
-        <label for="date">Date Of Brith</label><br>
-        <input type="date" name="dateOfBrith"><br>
-        <label for="education">Education</label><br>
 
-        <select name="education" >
-            <option value="SMA">SMA</option>
-            <option value="S1">S1</option>
-            <option value="S2">S2</option>
-            <option value="S3">S3</option>
-        </select><br>
+        <label for="date">Date Of Birth</label><br>
+        <input type="date" name="dateOfBirth" value="dateOfBirth"><br>
+
+        <label for="education">Education</label><br>
+          <select name="education" >
+              <option value="SMA">SMA</option>
+              <option value="S1">S1</option>
+              <option value="S2">S2</option>
+              <option value="S3">S3</option>
+          </select><br>
         
         <p>Position</p><br>
         <input type="radio" name="position" value="Staff"/>

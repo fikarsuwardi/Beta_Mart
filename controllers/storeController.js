@@ -6,7 +6,9 @@ const convertRp = require("../helpers/convertRp")
 class Controller {
     static dataStore(req, res) {
         Store.findAll({
-            include: [Employee],
+            include: [
+                Employee
+            ],
             order: ["id"]
             
         })
@@ -37,21 +39,17 @@ class Controller {
 
     static detailStore(req, res) {
         const storeId = +req.params.storeId
-        //let totalSalary = 0
         Store.findOne({
-            include: [Employee],
+            include: [
+                Employee
+            ],
             where: { id: storeId }
         })
-        .then(data => {
-            console.log(data, "asdsdas");
-            // console.log(data.name, "aaaaaaaaaaaaaa");
-            let employee = data.Employees[0]
-            let salary = data.Employees[0].salary
-            // let age = employee.
-            console.log(data.Employees.length, "---0-0-0-0-0-");
-            // console.log(salary); //500000
-            // console.log(employee.firstName); //uchiha
-            res.render('detailStore', {data, convertRp, employee, salary})
+        .then(storeData => {
+            let employees = storeData.Employees
+            res.render('detailStore', {
+                storeData, employees, convertRp,
+            })
         })
         .catch(err => {
             res.send(err);
@@ -73,10 +71,14 @@ class Controller {
 
     static addEmployee(req, res) {
         const storeId = +req.params.storeId
+        console.log("tesss",req.body);
+        console.log("store id", storeId);
         const {firstName, lastName, dateOfBirth, education, position, salary} = req.body
-        Employee.create({firstName, lastName, dateOfBirth, education, position, salary})
+        Employee.create({
+            firstName, lastName, dateOfBirth, education, position, StoreId: storeId, salary
+        })
         .then(_ => {
-            res.redirect(`/stores/${toreId}`)
+            res.redirect(`/stores/${storeId}`)
         })
         .catch((err) => {
             let error = []

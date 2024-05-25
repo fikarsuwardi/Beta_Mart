@@ -12,7 +12,6 @@ class Controller {
             ]
         })
         .then(data => {
-            //console.log(data);
             res.render('employeeList', { data, convertRp})
         })
         .catch(err => {

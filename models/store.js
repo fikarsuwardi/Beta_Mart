@@ -22,12 +22,8 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Store',
-    // Hooks
-    // https://sequelize.org/docs/v6/other-topics/hooks/
     hooks: {
       beforeCreate: (instance, options) => {
-        // console.log(instance);
-        // console.log(options);
         let code = ""
         if (instance.category === "Mart") {
           code = "001"
@@ -37,8 +33,7 @@ module.exports = (sequelize, DataTypes) => {
           code = "003"
         }
         let date = new Date()
-        instance.name = `${code}-${date.getTime()}`
-        // kirim instance code ke store Controller
+        instance.code = `${code}-${date.getTime()}`
       } 
     }
   });
